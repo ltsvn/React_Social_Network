@@ -4,7 +4,7 @@ import s from "./Post.module.css";
 
 type MessageType = {
     message: string
-    likesCount: string
+    likesCount: number
 }
 
 const Post = (props:MessageType) => {

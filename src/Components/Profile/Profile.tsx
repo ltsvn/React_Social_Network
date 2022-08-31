@@ -1,19 +1,18 @@
 import React from "react";
 import s from './Profile.module.css'
 import MyPosts from "./MyPost/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {ProfilePageType} from "../../State/StateTS";
 
+type ProfileType = {
+    state: ProfilePageType
+}
 
-const Profile = () => {
+const Profile = (props:ProfileType) => {
     return (
         <div>
-            <div>
-                <img
-                    src='https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg'/>
-            </div>
-            <div>
-                ava + discription
-            </div>
-            <MyPosts />
+            <ProfileInfo />
+            <MyPosts posts={props.state.posts} />
         </div>
     )
 }
