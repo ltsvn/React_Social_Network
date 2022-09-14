@@ -8,13 +8,14 @@ import {BrowserRouter} from "react-router-dom";
 
 
 let rerenderEntireTree = ()=> {
-    ReactDOM.render(<BrowserRouter>
+    ReactDOM.render(
             <App state={state}
                  addPostCallBack={addPost}
                  updateNewPostText={updateNewPostText}
             />,
-        </BrowserRouter>,
         document.getElementById('root'));
 }
 
-subscribe(rerenderEntireTree)
+rerenderEntireTree();
+
+subscribe(rerenderEntireTree);
