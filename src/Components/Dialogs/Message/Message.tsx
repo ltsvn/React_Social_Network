@@ -5,6 +5,7 @@ import stateTS from "../../../State/StateTS";
 
 export type messageType = {
     message: string
+
 }
 
 const Message = (props:messageType) => {

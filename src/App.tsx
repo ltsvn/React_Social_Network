@@ -5,10 +5,13 @@ import Navbar from "./Components/Navbar/Navbar";
 import Profile from "./Components/Profile/Profile";
 import Dialogs from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import state, {RootStateType} from "./State/StateTS";
+import state, {addPost, RootStateType, updateNewPostText} from "./State/StateTS";
+
 
 type AppType = {
     state:RootStateType
+    updateNewPostText: (newText: string) => void
+    addPostCallBack: () => void
 }
 
 const App:React.FC<AppType> = ({state}) => {
@@ -22,7 +25,9 @@ const App:React.FC<AppType> = ({state}) => {
                 {/*<Route path='/profile' component={Profile}/>*/}
 
                 <Route path='/dialogs' render={() => <Dialogs state={state.dialogsPage}/>}/>
-                <Route path='/profile' render={() => <Profile posts={state.profilePage.posts}/>}/>
+                <Route path='/profile' render={() => <Profile profilePage={state.profilePage}
+                                                              updateNewPostText={updateNewPostText}
+                                                              addPostCallBack={addPost}/>}/>
             </div>
         </div>
         </BrowserRouter>
