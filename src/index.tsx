@@ -6,7 +6,8 @@ import App from './App';
 import {addPost, RootStateType, updateNewPostText} from './State/StateTS'
 import {BrowserRouter} from "react-router-dom";
 
-let rerenderEntireTree = (state:RootStateType)=> {
+
+let rerenderEntireTree = ()=> {
     ReactDOM.render(<BrowserRouter>
             <App state={state}
                  addPostCallBack={addPost}
@@ -15,7 +16,5 @@ let rerenderEntireTree = (state:RootStateType)=> {
         </BrowserRouter>,
         document.getElementById('root'));
 }
-
-rerenderEntireTree(state);
 
 subscribe(rerenderEntireTree)
