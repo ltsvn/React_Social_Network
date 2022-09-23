@@ -1,12 +1,12 @@
 import React from "react";
 import MyPosts from "./MyPost/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import state, {PostType, ProfilePageType} from "../../State/StateTS";
+import {ProfilePageType} from "../../State/StateTS";
 
 type ProfileType = {
     profilePage: ProfilePageType
     updateNewPostText: (newText: string) => void
-    addPostCallBack: () => void
+    addPostCallBack: (postText: string) => void
 }
 
 

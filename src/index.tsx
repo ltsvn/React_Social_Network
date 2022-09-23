@@ -1,21 +1,23 @@
-import state, {subscribe} from './State/StateTS'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addPost, RootStateType, updateNewPostText} from './State/StateTS'
-import {BrowserRouter} from "react-router-dom";
+import store, {StoreType} from "./State/StateTS";
 
 
-let rerenderEntireTree = ()=> {
+
+let rerenderEntireTree = (state) => {
     ReactDOM.render(
+
             <App state={state}
-                 addPostCallBack={addPost}
-                 updateNewPostText={updateNewPostText}
+                 addPostCallBack={store.addPost.bind(store)}
+                 updateNewPostText={store.updateNewPostText.bind(store)}
             />,
         document.getElementById('root'));
 }
 
-rerenderEntireTree();
+rerenderEntireTree(store.getState);
 
-subscribe(rerenderEntireTree);
+store.subscribe(rerenderEntireTree);
+
+ServiceWorker.unregister();

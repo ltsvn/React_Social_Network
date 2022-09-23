@@ -1,14 +1,13 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {messageType} from "../../Dialogs/Dialogs";
-import {PostType, ProfilePageType, updateNewPostText} from "../../../State/StateTS";
+import {PostType} from "../../../State/StateTS";
 
 type MyPostsType = {
     posts: PostType[]
     newPostText: string
     updateNewPostText: (newText: string) => void
-    addPostCallBack: ()=>void
+    addPostCallBack: (postText: string) => void
 
 }
 
@@ -17,12 +16,11 @@ const MyPosts = (props: MyPostsType) => {
     let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
 
     let addPost = () => {
-        props.addPostCallBack();
+        props.addPostCallBack(props.newPostText);
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value;
-        props.updateNewPostText(text);
+        props.updateNewPostText(e.currentTarget.value);
     }
 
     return (
