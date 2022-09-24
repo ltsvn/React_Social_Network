@@ -2,22 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store, {StoreType} from "./State/StateTS";
+import store, {RootStateType, updateNewPostTextActionCreator} from "./State/StateTS";
+import {BrowserRouter} from "react-router-dom";
 
 
-
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = () => {
     ReactDOM.render(
-
-            <App state={state}
-                 addPostCallBack={store.addPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}
-            />,
+        <BrowserRouter>
+            <App state={store.getState()}
+                 dispatch={store.dispatch.bind(store)}
+             store={store}/>
+        </BrowserRouter>,
         document.getElementById('root'));
 }
 
-rerenderEntireTree(store.getState);
+rerenderEntireTree();
 
 store.subscribe(rerenderEntireTree);
-
-ServiceWorker.unregister();

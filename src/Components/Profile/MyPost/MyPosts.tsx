@@ -1,14 +1,15 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {PostType} from "../../../State/StateTS";
+import {ActionsTypes, PostType, updateNewPostTextActionCreator, addPostActionCreator} from "../../../State/StateTS";
+import {text} from "stream/consumers";
+
+
 
 type MyPostsType = {
     posts: PostType[]
     newPostText: string
-    updateNewPostText: (newText: string) => void
-    addPostCallBack: (postText: string) => void
-
+    dispatch: (action: ActionsTypes) => void
 }
 
 const MyPosts = (props: MyPostsType) => {
@@ -16,11 +17,13 @@ const MyPosts = (props: MyPostsType) => {
     let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
 
     let addPost = () => {
-        props.addPostCallBack(props.newPostText);
+        //props.addPost()
+        props.dispatch(addPostActionCreator(props.newPostText));
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.updateNewPostText(e.currentTarget.value);
+        // props.updateNewPostText(e.currentTarget.value)
+        props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value));
     }
 
     return (
