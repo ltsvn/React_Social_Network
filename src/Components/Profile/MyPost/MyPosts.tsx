@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionsTypes, PostType, updateNewPostTextActionCreator, addPostActionCreator} from "../../../State/StateTS";
+import {ActionsTypes, PostType} from "../../../State/StateTS";
+import {updateNewPostTextActionCreator, addPostActionCreator} from "../../../State/Profile-Reducer";
 import {text} from "stream/consumers";
 
 

@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
-const SEND_MESSAGE = 'SEND-MESSAGE';
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./Profile-Reducer";
+import dialogsReducer, {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./Dialogs-Reducer";
+import sidebarReducer from "./SideBar-Reducer";
 
 export type StoreType = {
     _state: RootStateType
@@ -14,37 +13,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-// type AddPostActionType = {
-//     type: 'ADD-POST'
-//     postText: string
-// }
-// type UpdateNewPostTextType = {
-//     type: 'UPDATE-NEW-POST-TEXT'
-//     newText: string
-// }
-
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
-
-export const addPostActionCreator = (postText: string) =>
-    ({
-        type: ADD_POST,
-        postText: postText
-    }) as const
-export const updateNewPostTextActionCreator = (newText: string) =>
-    ({
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    }) as const
-
-export const updateNewMessageBodyActionCreator = (body: any) =>
-    ({
-        type: UPDATE_NEW_MESSAGE_BODY,
-        body: body
-    }) as const
-export const sendMessageActionCreator = () =>
-    ({
-        type: SEND_MESSAGE,
-    }) as const
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator>
 
 let store: StoreType = {
     _state: {
@@ -87,28 +56,12 @@ let store: StoreType = {
         this._callSubscriber = observer
     },
 
-    dispatch(action) {      //{type: 'ADD_POST'}
-        if (action.type === ADD_POST) {
-            let newPost: PostType = {
-                id: 5,
-                message: action.postText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber();
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber();
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessageBody = action.body;
-            this._callSubscriber();
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogsPage.newMessageBody;
-            this._state.dialogsPage.newMessageBody = '';
-            this._state.dialogsPage.messagesData.push({id: 7, message: body});
-            this._callSubscriber();
-        }
+    dispatch(action) {//{type: 'ADD_POST'}
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._callSubscriber();
+
     }
 }
 
