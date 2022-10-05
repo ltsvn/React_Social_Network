@@ -1,6 +1,6 @@
 import React from "react";
 import s from './../Dialogs.module.css'
-import stateTS from "../../../State/StateTS";
+import stateTS from "../../../Redux/Store";
 
 
 export type messageType = {

@@ -1,10 +1,9 @@
 import React, {ChangeEvent} from "react";
-import {NavLink} from "react-router-dom";
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ActionsTypes, DialogsPageType} from "../../State/StateTS";
-import {  sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../State/Dialogs-Reducer";
+import {ActionsTypes, DialogsPageType, StoreType} from "../../Redux/Store";
+import {  sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../Redux/Dialogs-Reducer";
 
 export type messageType = {
     message: string
@@ -15,17 +14,18 @@ type DialogsType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-const Dialogs: React.FC<DialogsType> = ({state, dispatch}) => {
-    //let state = props.store.getState().dialogsPage;
+const Dialogs: React.FC<DialogsType> = ({state}) => {
+     let state = props.dialogsPage;
     let dialogsElements = state.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
     let messagesElements = state.messagesData.map(message => <Message message={message.message}/>)
     let newMessagesBody = state.newMessageBody;
 
     let onSendMessageClick = () => {
-        dispatch(sendMessageActionCreator())
+        props.sendMessage()
     }
     let onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNewMessageBodyActionCreator(e.target.value))
+        let body = e.currentTarget.value
+        props.updateNewMessageBody(body)
     }
 
     return (

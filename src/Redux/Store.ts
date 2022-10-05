@@ -1,6 +1,6 @@
 import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./Profile-Reducer";
 import dialogsReducer, {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./Dialogs-Reducer";
-import sidebarReducer from "./SideBar-Reducer";
+// import sidebarReducer from "./SideBar-Reducer";
 
 export type StoreType = {
     _state: RootStateType
@@ -44,7 +44,7 @@ let store: StoreType = {
             ],
             newMessageBody: ''
         },
-        sidebar: {}
+        // sidebar: {}
     },
     _callSubscriber() {
     },//method
@@ -59,7 +59,7 @@ let store: StoreType = {
     dispatch(action) {//{type: 'ADD_POST'}
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        // this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._callSubscriber();
 
     }
@@ -87,11 +87,11 @@ export type DialogsPageType = {
     messagesData: Array<MessageType>
     newMessageBody: string
 }
-type SidebarType = {}
+//  
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidebar: SidebarType
+    // sidebar: SidebarType
 }
 
 

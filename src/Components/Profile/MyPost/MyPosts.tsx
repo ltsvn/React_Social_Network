@@ -1,8 +1,8 @@
 import React, {ChangeEvent} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {ActionsTypes, PostType} from "../../../State/StateTS";
-import {updateNewPostTextActionCreator, addPostActionCreator} from "../../../State/Profile-Reducer";
+import {ActionsTypes, PostType, StoreType} from "../../../Redux/Store";
+import {updateNewPostTextActionCreator, addPostActionCreator} from "../../../Redux/Profile-Reducer";
 import {text} from "stream/consumers";
 
 
@@ -11,20 +11,22 @@ type MyPostsType = {
     posts: PostType[]
     newPostText: string
     dispatch: (action: ActionsTypes) => void
+    store: StoreType
+    // addPost: ()=>void
+    // updateNewPostText: ()=>void
 }
 
 const MyPosts = (props: MyPostsType) => {
 
     let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
 
-    let addPost = () => {
-        //props.addPost()
-        props.dispatch(addPostActionCreator(props.newPostText));
+    let onAddPost = () => {
+        props.addPost()
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // props.updateNewPostText(e.currentTarget.value)
-        props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value));
+         props.updateNewPostText(e.currentTarget.value)
+        // props.dispatch(updateNewPostTextActionCreator(e.currentTarget.value));
     }
 
     return (
@@ -35,7 +37,7 @@ const MyPosts = (props: MyPostsType) => {
                     <textarea onChange={onPostChange}  value={props.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
                 <div>
                     <button>Remove</button>
