@@ -11,9 +11,9 @@ import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 
 type AppType = {
-    state: RootStateType
-    store: StoreType
-    dispatch: (action: ActionsTypes) => void
+    // state: RootStateType
+    // store: StoreType
+    // dispatch: (action: ActionsTypes) => void
 }
 
 const App: React.FC<AppType> = (props) => {
@@ -27,8 +27,8 @@ const App: React.FC<AppType> = (props) => {
                     {/*<Route path='/dialogs' component={Dialogs}/>*/}
                     {/*<Route path='/profile' component={Profile}/>*/}
 
-                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}/>}/>
-                    <Route path='/profile' render={() => <Profile store={props.store}/>}/>
+                    <Route path='/dialogs' render={() => <DialogsContainer />}/>
+                    <Route path='/profile' render={() => <Profile />}/>
                 </div>
             </div>
         </BrowserRouter>
