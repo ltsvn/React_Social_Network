@@ -3,22 +3,24 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {ActionsTypes, DialogsPageType, StoreType} from "../../Redux/Store";
-import {  sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../Redux/Dialogs-Reducer";
+import {mapDispatchToPropsType, mapStateToPropsType} from "../Profile/MyPost/MyPostsContainer";
 
 export type messageType = {
     message: string
 }
 
 type DialogsType = {
+    updateNewMessageBody:(newMessage: string)=>void
+    sendMessage: ()=>void
+    messagesData: messageType
     state: DialogsPageType
-    dispatch: (action: ActionsTypes) => void
 }
 
-const Dialogs: React.FC<DialogsType> = ({state}) => {
-     let state = props.dialogsPage;
-    let dialogsElements = state.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messagesElements = state.messagesData.map(message => <Message message={message.message}/>)
-    let newMessagesBody = state.newMessageBody;
+const Dialogs: React.FC<DialogsType> = (props: mapStateToPropsType | mapDispatchToPropsType) => {
+     //let state = props.dialogsPage;
+    let dialogsElements = props.dialogsData.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
+    let messagesElements = props.messagesData.message.map(message => <Message message={message.message}/>)
+   // let newMessagesBody = props.newMessageBody;
 
     let onSendMessageClick = () => {
         props.sendMessage()
@@ -37,7 +39,7 @@ const Dialogs: React.FC<DialogsType> = ({state}) => {
                 <div>{messagesElements}</div>
                 <div>
                     <div>
-                        <textarea value={newMessagesBody} onChange={onNewMessageChange}
+                        <textarea value={props.messagesData.message} onChange={onNewMessageChange}
                                   placeholder='Enter your message!'></textarea>
                     </div>
                     <div>

@@ -73,7 +73,7 @@ type DialogType = {
     id: number
     name: string
 }
-export type PostType = {
+type PostType = {
     id: number
     message: string
     likesCount: number
@@ -82,12 +82,12 @@ export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogsData: Array<DialogType>
     messagesData: Array<MessageType>
     newMessageBody: string
 }
-//  
+//
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType

@@ -1,42 +1,37 @@
-import React, {ChangeEvent} from "react";
-import {NavLink} from "react-router-dom";
-import s from './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import {ActionsTypes, DialogsPageType, StoreType} from "../../Redux/Store";
+import React from "react";
 import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../../Redux/Dialogs-Reducer";
 import Dialogs from "./Dialogs";
-import * as events from "events";
-import StoreContext from "../../StoreContext";
+import {connect} from "react-redux";
+import {AppStateType} from "../../Redux/redux-store";
+import {initialStateType} from "../../Redux/Profile-Reducer";
+import {Dispatch} from "redux";
 
-export type messageType = {
-    message: string
+
+type mapStateToPropsType = {
+    dialogsPage: initialStateType
+}
+type mapDispatchToPropsType = {
+    updateNewMessageBody:(body:string)=>void
+    sendMessage:()=>void
 }
 
-type DialogsType = {
-    state: DialogsPageType
-    // dispatch: (action: ActionsTypes) => void
-    store: StoreType
+
+let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return{
+        dialogsPage: state.dialogsPage
+    }
+}
+let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+    return{
+        updateNewMessageBody: (body: string)=>{
+            dispatch(updateNewMessageBodyActionCreator(body))
+        },
+        sendMessage:()=>{
+            dispatch(sendMessageActionCreator())
+        }
+    }
 }
 
-const DialogsContainer: React.FC<DialogsType> = ({dispatch}) => {
+const  DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
-    return (
-        <StoreContext.Consumer>
-            { (store) => {
-                let state = store.getState().dialogsPage;
-
-                let onSendMessageClick = () => {
-                    dispatch(sendMessageActionCreator())
-                }
-                let onNewMessageChange = (body) => {
-                    dispatch(updateNewMessageBodyActionCreator(body))
-                }
-                return <Dialogs updateNewMessageBody={onNewMessageChange} SendMessage={onSendMessageClick}
-                         dialogsPage={state}/>
-            }
-        }</StoreContext.Consumer>
-            )
-            }
-
-            export default DialogsContainer;
+export default DialogsContainer;

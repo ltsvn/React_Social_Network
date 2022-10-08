@@ -12,12 +12,12 @@ import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 
 type AppType = {
     // state: RootStateType
-    // store: StoreType
+     //store: StoreType
     // dispatch: (action: ActionsTypes) => void
 }
 
 const App: React.FC<AppType> = (props) => {
-    const state = props.store.getState();
+    const state = store.getState();
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
