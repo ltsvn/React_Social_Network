@@ -1,4 +1,4 @@
-import {ActionsTypes, DialogsPageType, PostType} from "./Store";
+import {ActionsTypes} from "./Store";
 import profileReducer from "./Profile-Reducer";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
@@ -24,23 +24,40 @@ let initialState = {
     ],
     newMessageBody: ''
 }
+type DialogType = {
+    id: number
+    name: string
+}
+type MessageType = {
+    id: number
+    message: string
+}
+export type  initialStateType = {
+    dialogsData:Array<DialogType>
+    messagesData: Array<MessageType>
+    newMessageBody: string
+}
 
- const dialogsReducer = (state:DialogsPageType = initialState, action:ActionsTypes ) => {
+const dialogsReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
 
-     switch (action.type) {
-         case UPDATE_NEW_MESSAGE_BODY:
-             state.newMessageBody = action.body;
-             return state;
+    switch (action.type) {
+        case UPDATE_NEW_MESSAGE_BODY:
+            return {
+                ...state,
+                newMessageBody: action.body
+            };
 
-         case SEND_MESSAGE:
-             let body = state.newMessageBody;
-             state.newMessageBody = '';
-             state.messagesData.push({id: 7, message: body});
-             return state;
+        case SEND_MESSAGE:
+            let body = state.newMessageBody;
+            return {
+                ...state,
+                newMessageBody: '',
+                messagesData: [...state.messagesData, {id: 7, message: body}],
+            };
 
-         default:
-             return state;
-     }
+        default:
+            return state;
+    }
 }
 
 export const updateNewMessageBodyActionCreator = (body: string) =>

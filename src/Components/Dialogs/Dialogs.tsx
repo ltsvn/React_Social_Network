@@ -16,17 +16,17 @@ type DialogsType = {
     state: DialogsPageType
 }
 
-const Dialogs: React.FC<DialogsType> = (props: mapStateToPropsType | mapDispatchToPropsType) => {
+const Dialogs: React.FC<DialogsType> = (props) => {
      //let state = props.dialogsPage;
-    let dialogsElements = props.dialogsData.dialogs.map(dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
-    let messagesElements = props.messagesData.message.map(message => <Message message={message.message}/>)
-   // let newMessagesBody = props.newMessageBody;
+    let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
+    let messagesElements = props.state.message.map(m => <Message message={m.message} key={m.id}/>)
+   let newMessagesBody = props.state.newMessageBody;
 
     let onSendMessageClick = () => {
         props.sendMessage()
     }
     let onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.currentTarget.value
+        let body = e.target.value
         props.updateNewMessageBody(body)
     }
 
@@ -39,7 +39,7 @@ const Dialogs: React.FC<DialogsType> = (props: mapStateToPropsType | mapDispatch
                 <div>{messagesElements}</div>
                 <div>
                     <div>
-                        <textarea value={props.messagesData.message} onChange={onNewMessageChange}
+                        <textarea value={newMessagesBody} onChange={onNewMessageChange}
                                   placeholder='Enter your message!'></textarea>
                     </div>
                     <div>
