@@ -1,5 +1,4 @@
 import {ActionsTypes} from "./Store";
-import profileReducer from "./Profile-Reducer";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
@@ -7,13 +6,13 @@ const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let initialState = {
     dialogsData: [
-        {id: 1, name: 'Dimych'},
-        {id: 2, name: 'Andrey'},
-        {id: 3, name: 'Sveta'},
-        {id: 4, name: 'Tolya'},
-        {id: 5, name: 'Sasha'},
-        {id: 6, name: 'Viktor'},
-    ],
+        {id: 1, name: 'Dimych', avatar: 'https://img.icons8.com/ios-glyphs/2x/person-male.png'},
+        {id: 2, name: 'Andrey', avatar: 'https://img.icons8.com/ios-glyphs/2x/person-male.png'},
+        {id: 3, name: 'Sveta', avatar: 'https://img.icons8.com/ios-glyphs/2x/person-male.png'},
+        {id: 4, name: 'Tolya', avatar: 'https://img.icons8.com/ios-glyphs/2x/person-male.png'},
+        {id: 5, name: 'Sasha', avatar: 'https://img.icons8.com/ios-glyphs/2x/person-male.png'},
+        {id: 6, name: 'Viktor', avatar: 'https://img.icons8.com/ios-glyphs/2x/person-male.png'},
+    ] as DialogType[],
     messagesData: [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'How are you?'},
@@ -21,22 +20,19 @@ let initialState = {
         {id: 4, message: 'T'},
         {id: 5, message: 'Sa'},
         {id: 6, message: 'V'},
-    ],
+    ]as MessageType[],
     newMessageBody: ''
 }
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
+    avatar:string
 }
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
 }
-export type  initialStateType = {
-    dialogsData:Array<DialogType>
-    messagesData: Array<MessageType>
-    newMessageBody: string
-}
+export type  initialStateType = typeof initialState
 
 const dialogsReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
 

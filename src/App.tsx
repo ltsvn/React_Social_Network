@@ -8,6 +8,8 @@ import {BrowserRouter, Route} from "react-router-dom";
 import state, {ActionsTypes, RootStateType, StoreType} from "./Redux/Store";
 import store from "./Redux/Store";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+import Users from './Components/Users/Users';
+import UsersContainer from "./Components/Users/UsersContainer";
 
 
 type AppType = {
@@ -17,18 +19,16 @@ type AppType = {
 }
 
 const App: React.FC<AppType> = (props) => {
-    const state = store.getState();
+    //const state = store.getState();
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    {/*<Route path='/dialogs' component={Dialogs}/>*/}
-                    {/*<Route path='/profile' component={Profile}/>*/}
-
                     <Route path='/dialogs' render={() => <DialogsContainer />}/>
                     <Route path='/profile' render={() => <Profile />}/>
+                    <Route path='/users' render={() => <UsersContainer />}/>
                 </div>
             </div>
         </BrowserRouter>

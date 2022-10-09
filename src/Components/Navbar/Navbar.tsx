@@ -8,6 +8,7 @@ const Navbar = () => {
         <nav className={s.nav}>
             <div className={s.item}><NavLink to='/profile' activeClassName={s.active}>Profile</NavLink></div>
             <div className={`${s.item} ${s.active}`}><NavLink to='/dialogs' activeClassName={s.active}>Messages</NavLink></div>
+            <div className={`${s.item} ${s.active}`}><NavLink to='/users' activeClassName={s.active}>Users</NavLink></div>
             <div className={s.item}>News</div>
             <div className={s.item}>Music</div>
             <div className={s.item}>Settings</div>

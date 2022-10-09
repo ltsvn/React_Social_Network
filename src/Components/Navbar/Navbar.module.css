@@ -1,6 +1,6 @@
 .nav {
     grid-area: n;
-    background-color: darkorchid;
+    background-color: lightpink;
     padding: 20px;
 }
 
@@ -13,5 +13,5 @@
 }
 
 .item a.active {
-    color: gold;
+    color: hotpink;
 }

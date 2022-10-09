@@ -1,5 +1,6 @@
 import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./Profile-Reducer";
 import dialogsReducer, {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./Dialogs-Reducer";
+import {followAC, setUsersAC, unFollowAC} from "./Users-Reducer";
 // import sidebarReducer from "./SideBar-Reducer";
 
 export type StoreType = {
@@ -13,7 +14,8 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator>
+export type ActionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator> | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator> | ReturnType<typeof followAC> |
+    ReturnType<typeof unFollowAC> | ReturnType<typeof setUsersAC>
 
 let store: StoreType = {
     _state: {

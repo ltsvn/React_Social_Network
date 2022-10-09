@@ -15,6 +15,7 @@ type mapDispatchToPropsType = {
     sendMessage:()=>void
 }
 
+export type DialogPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return{
