@@ -19,7 +19,7 @@ export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType =>{
     return{
-        usersPage: state.users
+        usersPage: state.usersPage.users
     }
 }
 
