@@ -14,8 +14,7 @@ type ProfileType = {
 const Profile = (props: ProfileType) => (
     <div>
         <ProfileInfo/>
-        <MyPostsContainer
-        />
+        <MyPostsContainer/>
     </div>
 )
 

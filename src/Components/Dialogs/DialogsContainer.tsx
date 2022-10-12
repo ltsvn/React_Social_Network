@@ -3,7 +3,7 @@ import {sendMessageActionCreator, updateNewMessageBodyActionCreator} from "../..
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/redux-store";
-import {initialStateType} from "../../Redux/Profile-Reducer";
+import {initialStateType} from "../../Redux/Dialogs-Reducer";
 import {Dispatch} from "redux";
 
 

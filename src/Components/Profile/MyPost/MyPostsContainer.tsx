@@ -1,7 +1,12 @@
 import React, {ChangeEvent} from "react";
 import Post from "./Post/Post";
 import {ActionsTypes, StoreType} from "../../../Redux/Store";
-import {updateNewPostTextActionCreator, addPostActionCreator, initialStateType} from "../../../Redux/Profile-Reducer";
+import {
+    updateNewPostTextActionCreator,
+    addPostActionCreator,
+    initialStateType,
+    PostType
+} from "../../../Redux/Profile-Reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../Redux/redux-store";
@@ -14,12 +19,12 @@ type MyPostsType = {
     //store: StoreType
 }
 export type mapStateToPropsType = {
-    posts: initialStateType
-    newPostText: initialStateType
+    posts: PostType[]
+    newPostText: string
 }
 
 export type mapDispatchToPropsType = {
-    updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    updateNewPostText: ( value: string)  => void
     addPost: (postText: string) => void
 }
 
@@ -27,13 +32,13 @@ export type mapDispatchToPropsType = {
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
-        //newPostText: state.profilePage.newPostText
+        newPostText: state.profilePage.newPostText
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch):mapDispatchToPropsType => {
     return {
-        updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => {
-            dispatch(updateNewPostTextActionCreator(e.currentTarget.value))
+        updateNewPostText: ( value: string) => {
+            dispatch(updateNewPostTextActionCreator(value))
         },
         addPost: (postText: string) => {
             dispatch(addPostActionCreator(postText))
