@@ -2,46 +2,27 @@ import React from "react";
 import {initialStateType, UserType} from "../../Redux/Users-Reducer";
 import styles from './Users.module.css'
 import {UsersPropsType} from "./UsersContainer";
+import axios from "axios";
+import userPhoto from '../../assets/images/user.png'
 
 
 const Users = (props: UsersPropsType) => {
-
-    if(props.usersPage.users.length === 0){
-        props.setUsers([
-            {
-                id: 1,
-                photoUrl: 'https://img.icons8.com/plasticine/2x/person-male.png',
-                followed: true,
-                fullName: 'Dmitry',
-                status: 'I am a boss',
-                location: {city: 'Kiev', country: 'Ukraine'}
-            },
-            {
-                id: 2,
-                photoUrl: 'https://img.icons8.com/plasticine/2x/person-male.png',
-                followed: false,
-                fullName: 'Nastya',
-                status: 'I am a pretty girl',
-                location: {city: 'Lvov', country: 'Ukraine'}
-            },
-            {
-                id: 3,
-                photoUrl: 'https://img.icons8.com/plasticine/2x/person-male.png',
-                followed: true,
-                fullName: 'Ola',
-                status: 'I am a hr',
-                location: {city: 'Luck', country: 'Ukraine'}
-            },
-        ]
-        )
+    const getUsers = () =>
+    {
+        if(props.usersPage.users.length === 0){
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items)
+            })
+        }
     }
 
     return <div>
+        <button onClick={getUsers}>Get Users</button>
         {
             props.usersPage.users.map(user => <div key={user.id} className={styles.container}>
                 <span>
                      <div>
-                        <img src={user.photoUrl} className={styles.usersPhoto}/>
+                        <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.usersPhoto}/>
                      </div>
                     <div>
                         {user.followed
@@ -54,8 +35,8 @@ const Users = (props: UsersPropsType) => {
                         <div>{user.status}</div>
                 </span>
                 <span>
-                    <div>{user.location.city}</div>
-                    <div>{user.location.country}</div>
+                    <div>{'user.location.city'}</div>
+                    <div>{'user.location.country'}</div>
                 </span>
             </div>)
         }
