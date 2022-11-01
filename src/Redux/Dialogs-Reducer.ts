@@ -34,7 +34,9 @@ export type MessageType = {
 }
 export type  initialStateType = typeof initialState
 
-const dialogsReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
+export type DialogsUsersAT = | ReturnType<typeof updateNewMessageBodyActionCreator> | ReturnType<typeof sendMessageActionCreator>
+
+const dialogsReducer = (state: initialStateType = initialState, action: DialogsUsersAT): initialStateType => {
 
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:

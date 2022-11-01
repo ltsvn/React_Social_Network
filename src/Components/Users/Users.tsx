@@ -1,46 +1,60 @@
 import React from "react";
-import {initialStateType, UserType} from "../../Redux/Users-Reducer";
-import styles from './Users.module.css'
+import styles from "./Users.module.css";
+import userPhoto from "../../assets/images/user.png";
 import {UsersPropsType} from "./UsersContainer";
-import axios from "axios";
-import userPhoto from '../../assets/images/user.png'
+import {UserType} from "../../Redux/Users-Reducer";
+import {NavLink} from "react-router-dom";
 
+export type UsersTypeFunc = {
+    onPageChanged: (pageNumber: number) => void
+    users:UserType[]
+}
 
-const Users = (props: UsersPropsType) => {
-    const getUsers = () =>
-    {
-        if(props.usersPage.users.length === 0){
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                props.setUsers(response.data.items)
-            })
-        }
+export const Users = (props: UsersPropsType) => {
+
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
+    const pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
 
     return <div>
-        <button onClick={getUsers}>Get Users</button>
-        {
-            props.usersPage.users.map(user => <div key={user.id} className={styles.container}>
-                <span>
-                     <div>
-                        <img src={user.photos.small != null ? user.photos.small : userPhoto} className={styles.usersPhoto}/>
-                     </div>
-                    <div>
-                        {user.followed
-                            ? <button onClick={()=>{props.unfollow(user.id)}}>Unfollow</button>
-                            : <button onClick={()=>{props.follow(user.id)}}>Follow</button>}
-                    </div>
-                </span>
-                <span>
-                     <div>{user.fullName}</div>
-                        <div>{user.status}</div>
-                </span>
-                <span>
-                    <div>{'user.location.city'}</div>
-                    <div>{'user.location.country'}</div>
-                </span>
-            </div>)
-        }
+        <div>
+            {pages.map(page => {
+                return <span className={props.currentPage === page ? styles.selectedPage : ''}
+                             onClick={(e) => {
+                                 props.onPageChanged(page)
+                             }}>{page}</span>
+            })}
+        </div>
+        {props.usersPage.users.map(user => <div key={user.id} className={styles.container}>
+    <span>
+        <div>
+            <NavLink to={'/profile/' + user.id}>
+            <img src={user.photos.small !== null ? user.photos.small : userPhoto}
+                 className={styles.usersPhoto}/>
+            </NavLink>
+        </div>
+        <div>
+        {user.followed
+            ? <button onClick={() => {
+                props.unfollow(user.id)
+            }}>Unfollow</button>
+            : <button onClick={() => {
+                props.follow(user.id)
+            }}>Follow</button>}
+        </div>
+    </span>
+    <span>
+        <div>{user.name}</div>
+        <div>{user.status}</div>
+    </span>
+    <span>
+        <div>{'user.location.city'}</div>
+        <div>{'user.location.country'}</div>
+    </span>
+        </div>
+        )}
     </div>
 }
-
-export default Users;

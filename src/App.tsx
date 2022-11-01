@@ -8,8 +8,8 @@ import {BrowserRouter, Route} from "react-router-dom";
 import state, {ActionsTypes, RootStateType, StoreType} from "./Redux/Store";
 import store from "./Redux/Store";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
-import Users from './Components/Users/Users';
 import UsersContainer from "./Components/Users/UsersContainer";
+import ProfileContainer from "./Components/Profile/ProfileInfo/ProfileContainer";
 
 
 type AppType = {
@@ -27,8 +27,9 @@ const App: React.FC<AppType> = (props) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <DialogsContainer />}/>
-                    <Route path='/profile' render={() => <Profile />}/>
-                    <Route path='/users' render={() => <UsersContainer />}/>
+                    <Route path='/profile' render={() => <ProfileContainer />}/>
+                    <Route path='/users' render={() => <UsersContainer onPageChanged={()=>{}}
+                                                                       users={[]} unfollow={()=>{}} />}/>
                 </div>
             </div>
         </BrowserRouter>
