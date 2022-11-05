@@ -8,7 +8,7 @@ import {ProfilePropsType} from "./ProfileInfo/ProfileContainer";
 
 const Profile = (props: ProfilePropsType) => (
     <div>
-        <ProfileInfo profile={props.profile} setUserProfile={props.setUserProfile}/>
+        <ProfileInfo profile={props.profile} setUserProfile={props.setUserProfile} history={props.history} location={props.location} match={props.match}/>
         <MyPostsContainer/>
     </div>
 )

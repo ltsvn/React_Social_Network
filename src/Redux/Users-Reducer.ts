@@ -66,7 +66,6 @@ const usersReducer = (state: initialStateType = initialState, action: UsersReduc
             return {
                 ...state,
                 users: state.users.map(user => user.id === action.userId ? {...user, followed: false} : user)
-
                 /*state.users.map(user => {
                     if (user.id === action.userId) {
                         return {...user, followed: false}
@@ -111,7 +110,7 @@ export const follow = (userId: number) =>
         type: FOLLOW,
         userId
 
-    })
+    })as const
 
 export const unFollow = (userId: number) =>
     ({
@@ -119,7 +118,6 @@ export const unFollow = (userId: number) =>
         userId
     }) as const
 
-type setUsersType = ReturnType<typeof setUsers>
 export const setUsers = (users: UserType[]) =>
     ({
         type: SET_USERS,
