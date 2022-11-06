@@ -1,15 +1,11 @@
 import React from 'react';
 import './App.css';
-import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
-import Profile from "./Components/Profile/Profile";
-import Dialogs from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import state, {ActionsTypes, RootStateType, StoreType} from "./Redux/Store";
-import store from "./Redux/Store";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileInfo/ProfileContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 type AppType = {
@@ -19,11 +15,10 @@ type AppType = {
 }
 
 const App: React.FC<AppType> = (props) => {
-    //const state = store.getState();
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <DialogsContainer />}/>

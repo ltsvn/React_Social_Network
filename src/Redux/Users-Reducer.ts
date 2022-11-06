@@ -6,6 +6,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 
 export type UserType = {
@@ -28,8 +29,8 @@ const initialState: initialStateType = {
     pageSize: 100,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
-
+    isFetching: true,
+    followingInProgress:[]
 }
 
 export type  initialStateType = {
@@ -38,6 +39,7 @@ export type  initialStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: Array
 }
 
 export type UsersReducerAT = ReturnType<typeof setUsers> | ReturnType<typeof follow>
@@ -46,6 +48,7 @@ export type UsersReducerAT = ReturnType<typeof setUsers> | ReturnType<typeof fol
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof toggleFollowingProgress>
 
 const usersReducer = (state: initialStateType = initialState, action: UsersReducerAT): initialStateType => {
 
@@ -99,6 +102,12 @@ const usersReducer = (state: initialStateType = initialState, action: UsersReduc
                 isFetching: action.isFetching
             }
         }
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            return {
+                ...state,
+                followingInProgress: action.isFetching ? [...state.followingInProgress, action.userId] : state.followingInProgress.filter(id => id != action.userId)
+            }
+        }
 
         default:
             return state;
@@ -140,6 +149,13 @@ export const toggleIsFetching = (isFetching: boolean) =>
     ({
         type: TOGGLE_IS_FETCHING,
         isFetching
+    }) as const
+
+export const toggleFollowingProgress = (isFetching: boolean, userId: number) =>
+    ({
+        type: TOGGLE_IS_FOLLOWING_PROGRESS,
+        isFetching,
+        userId
     }) as const
 
 export default usersReducer;
