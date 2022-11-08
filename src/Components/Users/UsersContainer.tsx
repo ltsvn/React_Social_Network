@@ -88,6 +88,5 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 //     }
 // }
 
-
 export default connect(mapStateToProps, {
     follow, unFollow, setCurrentPage, toggleFollowingProgress, getUsers})(UsersContainer);
