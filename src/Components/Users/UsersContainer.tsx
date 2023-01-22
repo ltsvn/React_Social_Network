@@ -1,6 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
-import {follow, getUsers,setCurrentPage, toggleFollowingProgress,unFollow, UserType} from "../../Redux/Users-Reducer";
+import {
+    follow,
+    getUsers,
+    setCurrentPage, setTotalUsersCount,
+    setUsers,
+    toggleFollowingProgress, toggleIsFetching,
+    unFollow,
+    UserType
+} from "../../Redux/Users-Reducer";
 import {initialStateType} from "../../Redux/Users-Reducer";
 import {AppStateType} from "../../Redux/redux-store";
 import {Users, UsersTypeFunc} from "./Users";
@@ -22,7 +30,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
             <Users totalUsersCount={this.props.totalUsersCount} pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage} onPageChanged={this.onPageChanged}
                    users={this.props.usersPage.users} follow={this.props.follow}
-                   unfollow={this.props.unfollow} usersPage={this.props.usersPage}
+                   unFollow={this.props.unFollow} usersPage={this.props.usersPage}
                    setCurrentPage={this.props.setCurrentPage}
                    setTotalUsersCount={this.props.setTotalUsersCount} setUsers={this.props.setUsers}
                    isFetching={this.props.isFetching} toggleIsFetching={this.props.toggleIsFetching}
@@ -41,17 +49,17 @@ type mapStateToPropsType = {
 }
 type mapDispatchToPropsType = {
     follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    unFollow: (userId: number) => void
     setUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingProgress: (isFetching: boolean) => void
+    toggleFollowingProgress: (isFetching: boolean, userId: number) => void
     getUsers: (currentPage: number, pageSize:number)=>void
 
 }
 
-export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType & UsersTypeFunc
+export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
@@ -61,7 +69,6 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress
-
     }
 }
 
@@ -89,4 +96,4 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 // }
 
 export default connect(mapStateToProps, {
-    follow, unFollow, setCurrentPage, toggleFollowingProgress, getUsers})(UsersContainer);
+    follow, unFollow, setCurrentPage, toggleFollowingProgress, getUsers,toggleIsFetching, setUsers, setTotalUsersCount })(UsersContainer);

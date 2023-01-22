@@ -6,12 +6,12 @@ import {UserType} from "../../Redux/Users-Reducer";
 import {NavLink} from "react-router-dom";
 
 
-export type UsersTypeFunc = {
+export type UsersTypeFunc = UsersPropsType & {
     onPageChanged: (pageNumber: number) => void
     users:UserType[]
 }
 
-export const Users = (props: UsersPropsType) => {
+export const Users = (props: UsersTypeFunc) => {
 
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -40,7 +40,7 @@ export const Users = (props: UsersPropsType) => {
         <div>
         {user.followed
             ? <button disabled={props.followingInProgress.some((id: number) => id === user.id)}
-                      onClick={() => {props.unfollow(user.id)}}>Unfollow</button>
+                      onClick={() => {props.unFollow(user.id)}}>Unfollow</button>
             : <button disabled={props.followingInProgress.some((id: number) => id === user.id)}
                       onClick={() => {props.follow( user.id)}}>Follow</button>}
         </div>

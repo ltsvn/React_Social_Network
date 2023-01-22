@@ -1,14 +1,5 @@
-import profileReducer, {
-    addPostActionCreator,
-    ProfileReducerAT,
-    setUserProfile,
-    updateNewPostTextActionCreator
-} from "./Profile-Reducer";
-import dialogsReducer, {
-    DialogsUsersAT,
-    sendMessageActionCreator,
-    updateNewMessageBodyActionCreator
-} from "./Dialogs-Reducer";
+import {ProfileReducerAT} from "./Profile-Reducer";
+import {DialogsUsersAT} from "./Dialogs-Reducer";
 import {UsersReducerAT} from "./Users-Reducer";
 // import sidebarReducer from "./SideBar-Reducer";
 
@@ -18,7 +9,6 @@ export type StoreType = {
 
     getState: () => RootStateType
     subscribe: (observer: () => void) => void
-
 
     dispatch: (action: ActionsTypes) => void
 }

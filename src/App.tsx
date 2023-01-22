@@ -26,8 +26,7 @@ const App: React.FC<AppType> = (props) => {
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <DialogsContainer />}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
-                    <Route path='/users' render={() => <UsersContainer onPageChanged={()=>{}}
-                                                                       users={[]} unfollow={()=>{}} />}/>
+                    <Route path='/users' render={() => <UsersContainer />}/>
                     <Route path='/login' render={() => <Login/>}/>
                 </div>
             </div>

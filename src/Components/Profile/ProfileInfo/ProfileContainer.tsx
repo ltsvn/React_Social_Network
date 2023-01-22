@@ -11,12 +11,12 @@ type PathParamsType = {
     userId:string,
 }
 
-export type ProfilePropsType = mapStateToPropsType & mapDispatchToPropsType & RouteComponentProps<PathParamsType>
+export type ProfileContainerPropsType = mapStateToPropsType & mapDispatchToPropsType & RouteComponentProps<PathParamsType>
 
-class ProfileContainer extends React.Component<ProfilePropsType> {
+class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId
+        let userId = this.props.match.params.userId || String(this.props.myId)
         this.props.getUserProfile(userId)
     }
 
@@ -32,6 +32,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 type mapStateToPropsType = {
     profile: ProfileType | null
     isAuth: boolean
+    myId: number
 }
 
 type mapDispatchToPropsType = {
@@ -41,7 +42,8 @@ type mapDispatchToPropsType = {
 
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    myId: state.auth.id
 });
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);
