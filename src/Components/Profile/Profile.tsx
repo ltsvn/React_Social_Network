@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import MyPosts from "./MyPost/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes, ProfilePageType, StoreType} from "../../Redux/Store";
