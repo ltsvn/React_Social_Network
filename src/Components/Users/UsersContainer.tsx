@@ -13,6 +13,8 @@ import {initialStateType} from "../../Redux/Users-Reducer";
 import {AppStateType} from "../../Redux/redux-store";
 import {Users, UsersTypeFunc} from "./Users";
 import Preloader from "../common/Preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component<UsersPropsType> {
 
@@ -72,7 +74,7 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     }
 }
 
-// const maoDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 //     return {
 //         follow: (userId: number) => {
 //             dispatch(followAC(userId))
@@ -95,5 +97,5 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 //     }
 // }
 
-export default connect(mapStateToProps, {
-    follow, unFollow, setCurrentPage, toggleFollowingProgress, getUsers,toggleIsFetching, setUsers, setTotalUsersCount })(UsersContainer);
+export default compose<React.ComponentType>(withAuthRedirect, connect(mapStateToProps, {
+    follow, unFollow, setCurrentPage, toggleFollowingProgress, getUsers,toggleIsFetching, setUsers, setTotalUsersCount }))(UsersContainer)
