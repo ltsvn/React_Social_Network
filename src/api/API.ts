@@ -28,8 +28,21 @@ export const usersAPI = {
         return instance.get(`auth/me`)
     },
     getProfile(userId:string){
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId);
+        console.warn('Obsolete method. Please profileAPI object.')
+        return profileAPI.getProfile( userId);
     }
+}
+
+export const profileAPI = {
+    getProfile(userId:string){
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId);
+    },
+    getStatus(userId:string){
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/status/` + userId)
+    },
+    updateStatus(status:string){
+        return instance.put(`https://social-network.samuraijs.com/api/1.0/profile/status`, {status: status})
+    },
 }
 export const authAPI = {
     me() {return instance.get(`auth/me`)},
