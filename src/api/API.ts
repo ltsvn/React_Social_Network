@@ -57,9 +57,4 @@ export const authAPI = {
 }
 
 
-// export const getUsers2 = (id: number) => {
-//     return instance.get(`follow/${user.id}`).then(response => {
-//         return response.data
-//     })
-// }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import axios from "axios";
-import {getAuthUserData, setAuthUserData} from "../../Redux/auth-reducer";
+import {getAuthUserData, logout, setAuthUserData} from "../../Redux/auth-reducer";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/redux-store";
 
@@ -20,12 +20,13 @@ export type AuthPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 type mapStateToPropsType = {
     isAuth: boolean
-    login: string
+    login: null
 }
 
 type mapDispatchToPropsType = {
-    setAuthUserData: (id: number, email: string, login: string) => void
+    setAuthUserData: (id: null, email: null, login: null, isAuth:boolean) => void
     getAuthUserData: ()=>void
+    logout: ()=> void
 }
 
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
@@ -34,5 +35,5 @@ let mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
 
 });
 
-export default connect(mapStateToProps, {getAuthUserData})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthUserData, logout})(HeaderContainer);
 

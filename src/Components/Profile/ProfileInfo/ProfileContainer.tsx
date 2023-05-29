@@ -17,20 +17,20 @@ export type ProfileContainerPropsType =
     & mapDispatchToPropsType
     & RouteComponentProps<PathParamsType>
 
-//   [widthAuthRedirect] (redirect logic) -> <ProfileContainer/> (методы жизненного цикла ) ->  <Profile />
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId || String(this.props.myId)
+        let userId = this.props.match.params.userId || String(this.props.authorizedUserId)
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
     }
 
     render() {
-
         return (
-            <Profile {...this.props} profile={this.props.profile} status={this.props.status}
+            <Profile {...this.props}
+                     profile={this.props.profile}
+                     status={this.props.status}
                      updateStatus={this.props.updateStatus}/>
         )
     }
@@ -38,12 +38,12 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType> {
 
 type mapStateToPropsType = {
     profile: ProfileType | null
-    myId: number
+    authorizedUserId: null
     status: string
+    isAuth: boolean
 }
 
 type mapDispatchToPropsType = {
-    //setUserProfile: (profile: ProfileType) => void
     getUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
@@ -51,8 +51,9 @@ type mapDispatchToPropsType = {
 
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     profile: state.profilePage.profile,
-    myId: state.auth.id,
-    status: state.profilePage.status
+    authorizedUserId: state.auth.id,
+    status: state.profilePage.status,
+    isAuth: state.auth.isAuth
 });
 
 export default compose<React.ComponentType>(connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
