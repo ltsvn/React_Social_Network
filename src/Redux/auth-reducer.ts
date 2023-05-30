@@ -15,7 +15,7 @@ export const initialState: initialStateType = {
 }
 
 export type  initialStateType = {
-    id: null,
+    id: number|null,
     email: null,
     login: null,
     isAuth: boolean
@@ -53,12 +53,6 @@ export const getAuthUserData = () => (dispatch: Dispatch) => {
         }
     })
 }
-
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
-    AppStateType,
-    unknown,
-    AnyAction>
-
 
 export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: AppDispatchThunk) => {
     authAPI.login(email, password, rememberMe).then(response => {
