@@ -20,7 +20,7 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
-    getUsersPage
+    getUsersPage, getUsersPageSuper, getUsersPageSuperSelector
 } from "../../Redux/user-selectors";
 
 
@@ -84,6 +84,7 @@ export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: getUsersPage(state),
+        // usersPage: getUsersPage(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
