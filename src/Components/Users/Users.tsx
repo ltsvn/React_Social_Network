@@ -29,7 +29,7 @@ export const Users = (props: UsersTypeFunc) => {
                              }}>{page}</span>
             })}
         </div>
-        {props.usersPage.users.map(user => <div key={user.id} className={styles.container}>
+        {props.usersPage.map(user => <div key={user.id} className={styles.container}>
     <span>
         <div>
             <NavLink to={'/profile/' + user.id}>
