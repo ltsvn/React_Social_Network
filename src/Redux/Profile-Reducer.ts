@@ -1,9 +1,11 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/API";
+import post from "../Components/Profile/MyPost/Post/Post";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
+const DELETE_POST = 'DELETE_POST'
 
 export type ProfileType = {
         aboutMe: string,
@@ -51,7 +53,8 @@ export type  initialStateType = {
     status: string
 }
 
-export type ProfileReducerAT = ReturnType<typeof addPostActionCreator> | ReturnType<typeof setUserProfile> |ReturnType<typeof setStatus>
+export type ProfileReducerAT = ReturnType<typeof addPostActionCreator> | ReturnType<typeof setUserProfile> |
+    ReturnType<typeof setStatus> | ReturnType<typeof deletePost>
 
 const profileReducer = (state: initialStateType = initialState, action: ProfileReducerAT): initialStateType => {
     switch (action.type) {
@@ -79,6 +82,12 @@ const profileReducer = (state: initialStateType = initialState, action: ProfileR
                 status: action.status
             };
         }
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: state.posts.filter(post => post.id !== action.postID)
+            };
+        }
         default:
             return state;
     }
@@ -101,6 +110,11 @@ export const setStatus = (status:string) =>
         type: SET_STATUS,
         status
     }) as const
+
+export const deletePost = (postID: number) => ({
+    type: DELETE_POST,
+    postID
+})as const
 
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
      usersAPI.getProfile(userId).then(response => {

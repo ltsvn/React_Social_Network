@@ -16,6 +16,7 @@ export type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
+
     return (
         <div>
             <ProfileInfo profile={props.profile} history={props.history} location={props.location} match={props.match}

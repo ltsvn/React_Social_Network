@@ -1,5 +1,4 @@
 import axios from "axios";
-import {setAuthUserData} from "../Redux/auth-reducer";
 
 
 const baseUrl = 'https://social-network.samuraijs.com/api/1.0/'
