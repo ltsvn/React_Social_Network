@@ -1,5 +1,7 @@
 import React, {FC, TextareaHTMLAttributes} from 'react';
 import s from './FormControls.module.css';
+import {required} from "../../../utils/validators/validators";
+import {Field} from "redux-form";
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     input: any;
@@ -33,3 +35,8 @@ export const Input: FC<TextareaProps> = (props) => {
         <FormControl {...props}><input {...input} {...restProps} /></FormControl>
     );
 };
+
+export const createField = (placeholder: any, name: any, validators: any = [], component: any, text: any = '', props: any = {}) => (
+    <div><Field placeholder={placeholder} name={name} validate={validators} component={component}
+                 {...props}/>{text}</div>
+)

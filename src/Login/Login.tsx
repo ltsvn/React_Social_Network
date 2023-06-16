@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../Components/common/FormsControls/FormControls";
+import {createField, Input} from "../Components/common/FormsControls/FormControls";
 import {required} from "../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../Redux/auth-reducer";
@@ -27,21 +27,14 @@ type FormDataType = {
     rememberMe: boolean
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={'Email'} name={'email'} component={Input} validate={[required]}/>
-            </div>
-            <div>
-                <Field placeholder={'Password'} type={'password'} name={'password'} component={Input}
-                       validate={[required]}/>
-            </div>
-            <div>
-                <Field component={Input} name={'rememberMe'} type={'checkbox'}/>remember me
-            </div>
-            {props.error && <div className={s.formSummaryError}>
-                {props.error}
+        <form onSubmit={handleSubmit}>
+            {createField('Email', 'email', [required], Input, null)}
+            {createField('Password', 'password', [required], Input, null, {type: 'password'})}
+            {createField(null, 'rememberMe', null, Input, 'remember me', {type: 'checkbox'})}
+            {error && <div className={s.formSummaryError}>
+                {error}
             </div>}
             <div>
                 <button>Login</button>

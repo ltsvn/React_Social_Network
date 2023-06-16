@@ -44,7 +44,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
                    setTotalUsersCount={this.props.setTotalUsersCount} setUsers={this.props.setUsers}
                    isFetching={this.props.isFetching} toggleIsFetching={this.props.toggleIsFetching}
                    followingInProgress={this.props.followingInProgress}
-                   toggleFollowingProgress={this.props.toggleFollowingProgress} getUsers={this.props.getUsers}/>
+                   toggleFollowingProgress={this.props.toggleFollowingProgress} getUsers={this.props.getUsers} />
         </>
     }
 }
@@ -70,17 +70,6 @@ type mapDispatchToPropsType = {
 }
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
-
-// const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
-//     return {
-//         usersPage: state.usersPage,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: getUsersPage(state),
