@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/React_Social_Network/static/css/main.eeda04e6.css",
+    "main.js": "/React_Social_Network/static/js/main.df777e46.js",
+    "static/media/preloader.gif": "/React_Social_Network/static/media/preloader.77c0fc7b22e756437574.gif",
+    "index.html": "/React_Social_Network/index.html",
+    "main.eeda04e6.css.map": "/React_Social_Network/static/css/main.eeda04e6.css.map",
+    "main.df777e46.js.map": "/React_Social_Network/static/js/main.df777e46.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eeda04e6.css",
+    "static/js/main.df777e46.js"
+  ]
+}
