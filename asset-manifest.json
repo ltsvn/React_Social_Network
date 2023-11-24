@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/React_Social_Network/static/css/main.eeda04e6.css",
-    "main.js": "/React_Social_Network/static/js/main.df777e46.js",
+    "main.css": "/React_Social_Network/static/css/main.44e71775.css",
+    "main.js": "/React_Social_Network/static/js/main.070898d7.js",
+    "static/media/481pltworzenie-stron-www.jpg": "/React_Social_Network/static/media/481pltworzenie-stron-www.dbbe9087b9ff761f08f7.jpg",
     "static/media/preloader.gif": "/React_Social_Network/static/media/preloader.77c0fc7b22e756437574.gif",
     "index.html": "/React_Social_Network/index.html",
-    "main.eeda04e6.css.map": "/React_Social_Network/static/css/main.eeda04e6.css.map",
-    "main.df777e46.js.map": "/React_Social_Network/static/js/main.df777e46.js.map"
+    "main.44e71775.css.map": "/React_Social_Network/static/css/main.44e71775.css.map",
+    "main.070898d7.js.map": "/React_Social_Network/static/js/main.070898d7.js.map"
   },
   "entrypoints": [
-    "static/css/main.eeda04e6.css",
-    "static/js/main.df777e46.js"
+    "static/css/main.44e71775.css",
+    "static/js/main.070898d7.js"
   ]
 }
