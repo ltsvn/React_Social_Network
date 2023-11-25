@@ -1,12 +1,5 @@
-.usersPhoto{
-    width: 100px;
-    height:100px;
-}
-
-.container{
-    display: flex;
-}
-
-.selectedPage{
-    font-weight: bold;
+.users {
+    margin: 20px;
+    overflow: auto;
+    height: 700px;
 }

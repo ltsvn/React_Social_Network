@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './../Users.module.css';
+import styles from './User.module.css';
 import userPhoto from "./../../../assets/images/user.png";
 import {NavLink} from "react-router-dom";
 import {UserType} from "../../../Redux/Users-Reducer";
@@ -15,13 +15,19 @@ type UserPropsType = {
 export const User = ({user, followingInProgress, follow, unFollow}: UserPropsType) => {
     return <div>
         <div key={user.id} className={styles.container}>
-                       <span>
-                            <div>
+                            <div className={styles.photoTitleUser}>
                                 <NavLink to={'/profile/' + user.id}>
                                 <img src={user.photos.small !== null ? user.photos.small : userPhoto}
                                      className={styles.usersPhoto} alt='photo'/>
                                 </NavLink>
+                                <div className={styles.userTitle}>{user.name}</div>
                             </div>
+                           <div>
+
+                           </div>
+                        <span>
+                            <div>{user.status}</div>
+                        </span>
                             <div>
                                 {user.followed
                                     ? <button disabled={followingInProgress.some((id: number) => id === user.id)}
@@ -33,15 +39,7 @@ export const User = ({user, followingInProgress, follow, unFollow}: UserPropsTyp
                                                   follow(user.id)
                                               }}>Follow <FaUserPlus/></button>}
                           </div>
-                       </span>
-            <span>
-                            <div>{user.name}</div>
-                            <div>{user.status}</div>
-                        </span>
-            <span>
-                            <div>{'user.location.city'}</div>
-                            <div>{'user.location.country'}</div>
-                        </span>
+
         </div>
     </div>
 }

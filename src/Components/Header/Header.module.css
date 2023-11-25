@@ -1,7 +1,5 @@
-
-
 .header {
-    background: #fff url('../../img/481pltworzenie-stron-www.jpg')  no-repeat center;
+    background: #fff url('../../img/punozh3zkth3cqyppf_przd5wco.jpg')  no-repeat center;
     background-size: cover;
     grid-area: header;
     height: 400px;
@@ -11,6 +9,44 @@
 .loginBlock{
     float: right;
 }
+
 .loginBlock a{
     color: white;
+}
+
+.imgStyle{
+    max-height: 190px;
+    max-width: 190px;
+}
+
+.headerItemWrap{
+    align-items: flex-end;
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.headerContainer{
+    align-items: center;
+    display: flex;
+    justify-content: start;
+    margin-bottom: 50px;
+}
+
+.upload{
+    background-color: #000;
+    border: none;
+    color: #fff;
+    margin-left: 20px;
+    padding: 10px 15px;
+    transition: background-color .5s linear;
+}
+
+.button{
+    background-color: transparent;
+    border-color: transparent;
+    color: white;
+    display: flex;
+    gap: 5px;
 }

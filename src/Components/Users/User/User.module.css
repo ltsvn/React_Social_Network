@@ -1,0 +1,30 @@
+.usersPhoto{
+    width: 100px;
+    height:100px;
+}
+
+.container{
+    align-items: center;
+    border: 1px solid #e3e3e3;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    transition: box-shadow .2s linear;
+}
+
+.selectedPage{
+    font-weight: bold;
+}
+
+.photoTitleUser{
+    display: flex;
+    align-items: center;
+}
+
+.userTitle{
+    color: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+}

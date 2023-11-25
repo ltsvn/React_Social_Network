@@ -1,14 +1,5 @@
-.app-wrapper {
-}
-
-/*.app-content {*/
-/*    grid-area: c;*/
-/*    background-color: lightblue;*/
-
-/*}*/
-
 .app-container {
-    /*max-width: 1200px;*/
+    max-width: 1200px;
     display: flex;
     margin: 0 auto;
     padding: 0 15px;
@@ -18,11 +9,11 @@
 .app-content {
     max-width: 570px;
     width: 100%;
+    background-color: white;
 }
 
 body {
     margin: 0;
-
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     line-height: 1.6;
@@ -30,7 +21,6 @@ body {
     color: #8c8b8b;
 
 }
-
 
 *,
 *:before,
