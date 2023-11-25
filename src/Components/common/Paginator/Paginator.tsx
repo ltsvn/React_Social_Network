@@ -24,12 +24,12 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged, porti
         pages.push(i)
     }
 
-    return <div>
+    return <div className={styles.paginator}>
             {pages.map(page => {
-                return <span className={currentPage === page ? styles.selectedPage : ''}
+                return <button key={page} className={currentPage === page ? styles.selectedPage : ''}
                              onClick={(e) => {
                                  onPageChanged(page)
-                             }}>{page}</span>
+                             }}>{page}</button>
             })}
         </div>
 }

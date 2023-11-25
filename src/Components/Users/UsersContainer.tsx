@@ -73,7 +73,6 @@ export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: getUsersPage(state),
-        // usersPage: getUsersPage(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
@@ -83,7 +82,6 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 }
 
 export default compose<React.ComponentType>(
-    // withAuthRedirect,
     connect(mapStateToProps, {
         follow,
         unFollow,

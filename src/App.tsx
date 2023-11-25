@@ -13,6 +13,9 @@ import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import {AppStateType} from "./Redux/redux-store";
 import Preloader from "./Components/common/Preloader/Preloader";
+import Footer from "./Components/Footer/Footer";
+import FriendsScrollContainer from "./Components/FriendsScroll/FriendsScrollContainer";
+
 
 type AppProps = {
     initializeApp: () => void
@@ -33,13 +36,17 @@ class App extends React.Component<AppProps> {
             <BrowserRouter>
                 <div className='app-wrapper'>
                     <HeaderContainer setAuthUserData={setAuthUserData}/>
-                    <Navbar/>
-                    <div className='app-wrapper-content'>
-                        <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/login' render={() => <Login/>}/>
+                    <div className='app-container'>
+                        <Navbar />
+                        <div className='app-content'>
+                            <Route path='/dialogs' render={() => <DialogsContainer />}/>
+                            <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
+                            <Route path='/users' render={() => <UsersContainer />}/>
+                            <Route path='/login' render={() => <Login />}/>
+                        </div>
+                        <FriendsScrollContainer  />
                     </div>
+                    <Footer/>
                 </div>
             </BrowserRouter>
         );

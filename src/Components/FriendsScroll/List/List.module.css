@@ -1,0 +1,14 @@
+.usersPhoto{
+    border-radius: 20px;
+    height: 45px;
+    width: 45px;
+}
+
+.userItem{
+    display: flex;
+}
+
+.name{
+    color: #545454;
+    font-weight: bold;
+}

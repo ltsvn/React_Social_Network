@@ -1,6 +1,5 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/API";
-import post from "../Components/Profile/MyPost/Post/Post";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE'

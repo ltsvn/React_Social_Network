@@ -1,5 +1,7 @@
 import React from "react";
 import s from "./Post.module.css";
+import avatar from "../../../../assets/images/avatar.png";
+import {IoHeartOutline} from "react-icons/io5";
 
 
 type MessageType = {
@@ -10,10 +12,18 @@ type MessageType = {
 const Post = (props:MessageType) => {
     return (
         <div className={s.item}>
-            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI8AeBnWElMUXOK6cBZbyvgqj0hdHdSs9S-g&usqp=CAU'/>
-            {props.message};
-            <div>
-                <span>like</span>{props.likesCount}
+            <div className={s.postItem}>
+                <img src={avatar} alt='profileImg'/>
+                <div>
+                    Nastya Lutsiv
+                </div>
+            </div>
+
+            <div className={s.postMessage}>
+                {props.message};
+            </div>
+            <div className={s.likes}>
+                <IoHeartOutline />{props.likesCount}
             </div>
         </div>
     )

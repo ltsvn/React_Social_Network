@@ -1,7 +1,16 @@
 .nav {
-    grid-area: n;
-    background-color: lightpink;
+    background-color: white;
     padding: 20px;
+    max-width: 285px;
+    width: 100%;
+}
+
+.title {
+    color: #000;
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    border-bottom: 2px solid #2196f3;
 }
 
 .item  {
@@ -14,4 +23,10 @@
 
 .item a.active {
     color: hotpink;
+}
+
+.navItems{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

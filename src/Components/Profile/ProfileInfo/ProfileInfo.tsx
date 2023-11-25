@@ -3,22 +3,30 @@ import s from './ProfileInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import {ProfilePropsType} from "../Profile";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
+import avatar from '../../../assets/images/avatar.png';
 
-const ProfileInfo = (props: ProfilePropsType) => {
-    if(!props.profile){
+const ProfileInfo: React.FC<ProfilePropsType> = ({profile, status, updateStatus}) => {
+    if(!profile){
         return <Preloader/>
     }
 
     return (
-        <div>
-            <div>
-                {/*<img*/}
-                {/*    src='https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg'/>*/}
-            </div>
+        <div className={s.profileInfo}>
             <div className={s.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <div className={s.imgStyle}>
+                    <img src={avatar} alt='profileImg'/>
+                </div>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
+            <div>
+                <div className={s.infoItem}>Name: {profile.fullName}</div>
+                <div className={s.infoItem}>About Me: lucky girl</div>
+                <div className={s.infoItem}>Job: Front-End Developer</div>
+                <div className={s.infoItem}>Contacts: nastaluciv@gmail.com</div>
+                <div className={s.infoItem}>Linkedin: linkedin.com</div>
+                <div className={s.infoItem}>Github: github.com</div>
+            </div>
+
         </div>
     )
 }

@@ -15,13 +15,13 @@ export type AppDispatchThunk = ThunkDispatch<AppStateType, unknown, AnyAction>
 export const rootReducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    // sidebar: sidebarReducer
+    //sidebar: sidebarReducer
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
     app:appReducer
 });
-
+//@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store = createStore(rootReducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
 //@ts-ignore

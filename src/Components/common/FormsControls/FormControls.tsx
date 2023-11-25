@@ -1,6 +1,5 @@
 import React, {FC, TextareaHTMLAttributes} from 'react';
 import s from './FormControls.module.css';
-import {required} from "../../../utils/validators/validators";
 import {Field} from "redux-form";
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {

@@ -1,4 +1,3 @@
-import {ReactComponent} from "*.svg";
 import {Redirect} from "react-router-dom";
 import React, {ComponentType} from "react";
 import {AppStateType} from "../Redux/redux-store";

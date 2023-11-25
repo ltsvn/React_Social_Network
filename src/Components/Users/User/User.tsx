@@ -3,6 +3,7 @@ import styles from './../Users.module.css';
 import userPhoto from "./../../../assets/images/user.png";
 import {NavLink} from "react-router-dom";
 import {UserType} from "../../../Redux/Users-Reducer";
+import {FaUserMinus, FaUserPlus} from "react-icons/fa";
 
 type UserPropsType = {
     user: UserType,
@@ -15,22 +16,22 @@ export const User = ({user, followingInProgress, follow, unFollow}: UserPropsTyp
     return <div>
         <div key={user.id} className={styles.container}>
                        <span>
-                          <div>
-                            <NavLink to={'/profile/' + user.id}>
-                            <img src={user.photos.small !== null ? user.photos.small : userPhoto}
-                                 className={styles.usersPhoto}/>
-                            </NavLink>
+                            <div>
+                                <NavLink to={'/profile/' + user.id}>
+                                <img src={user.photos.small !== null ? user.photos.small : userPhoto}
+                                     className={styles.usersPhoto} alt='photo'/>
+                                </NavLink>
                             </div>
                             <div>
-                            {user.followed
-                                ? <button disabled={followingInProgress.some((id: number) => id === user.id)}
-                                          onClick={() => {
-                                              unFollow(user.id)
-                                          }}>Unfollow</button>
-                                : <button disabled={followingInProgress.some((id: number) => id === user.id)}
-                                          onClick={() => {
-                                              follow(user.id)
-                                          }}>Follow</button>}
+                                {user.followed
+                                    ? <button disabled={followingInProgress.some((id: number) => id === user.id)}
+                                              onClick={() => {
+                                                  unFollow(user.id)
+                                              }}>Unfollow <FaUserMinus/></button>
+                                    : <button disabled={followingInProgress.some((id: number) => id === user.id)}
+                                              onClick={() => {
+                                                  follow(user.id)
+                                              }}>Follow <FaUserPlus/></button>}
                           </div>
                        </span>
             <span>

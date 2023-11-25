@@ -1,3 +1,19 @@
 .descriptionBlock {
     padding: 10px;
 }
+.profileInfo{
+    display: flex;
+    margin-bottom: 20px;
+    padding: 25px;
+    background-color: white;
+    height: 350px;
+}
+
+.infoItem{
+    margin-bottom: 10px;
+}
+
+.imgStyle{
+    max-height: 190px;
+    max-width: 190px;
+}

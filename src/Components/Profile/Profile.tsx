@@ -1,9 +1,8 @@
-import React, {useEffect} from "react";
-import MyPosts from "./MyPost/MyPosts";
+import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionsTypes, ProfilePageType, StoreType} from "../../Redux/Store";
 import MyPostsContainer from "./MyPost/MyPostsContainer";
-import {getUserProfile, ProfileType} from "../../Redux/Profile-Reducer";
+import { ProfileType } from "../../Redux/Profile-Reducer";
+import s from './Profile.module.css'
 
 export type ProfilePropsType = {
     profile: ProfileType | null
@@ -15,12 +14,12 @@ export type ProfilePropsType = {
     updateStatus: (status: string) => void
 }
 
-const Profile = (props: ProfilePropsType) => {
+const Profile: React.FC<ProfilePropsType> = ({profile, status, history, location , match, children, getUserProfile, updateStatus}) => {
 
     return (
-        <div>
-            <ProfileInfo profile={props.profile} history={props.history} location={props.location} match={props.match}
-                         getUserProfile={getUserProfile} updateStatus={props.updateStatus} status={props.status}/>
+        <div className={s.profilePage}>
+            <ProfileInfo profile={profile} history={history} location={location} match={match}
+                         getUserProfile={getUserProfile} updateStatus={updateStatus} status={status}/>
             <MyPostsContainer/>
         </div>
     );

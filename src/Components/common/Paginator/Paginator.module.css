@@ -1,3 +1,22 @@
-.selectedPage{
-    font-weight: bold;
+.paginator {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.paginator button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.paginator button:hover {
+    background-color: #e0e0e0;
+}
+
+.paginator button.selectedPage {
+    background-color: #2196f3;
+    color: #fff;
 }

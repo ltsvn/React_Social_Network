@@ -1,0 +1,11 @@
+.footer{
+    margin: 10px 0;
+    background-color: white;
+    padding: 10px;
+}
+
+.footer_items{
+display:flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}

@@ -1,7 +1,4 @@
-import {ActionsTypes} from "./Store";
-
 const SEND_MESSAGE = 'SEND-MESSAGE';
-
 
 let initialState = {
     dialogsData: [

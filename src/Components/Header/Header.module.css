@@ -1,10 +1,11 @@
-.header {
-    grid-area: h;
-    background-color: lightslategray;
-}
 
-.header img {
-    width: 20px;
+
+.header {
+    background: #fff url('../../img/481pltworzenie-stron-www.jpg')  no-repeat center;
+    background-size: cover;
+    grid-area: header;
+    height: 400px;
+    margin-bottom: 30px;
 }
 
 .loginBlock{
