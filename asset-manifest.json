@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/React_Social_Network/static/css/main.44e71775.css",
-    "main.js": "/React_Social_Network/static/js/main.69894036.js",
-    "static/media/481pltworzenie-stron-www.jpg": "/React_Social_Network/static/media/481pltworzenie-stron-www.dbbe9087b9ff761f08f7.jpg",
+    "main.css": "/React_Social_Network/static/css/main.d829c9fe.css",
+    "main.js": "/React_Social_Network/static/js/main.0255f10b.js",
+    "static/media/punozh3zkth3cqyppf_przd5wco.jpg": "/React_Social_Network/static/media/punozh3zkth3cqyppf_przd5wco.08fabc595b8d4349df4b.jpg",
+    "static/media/Blurred-Background-02.jpg": "/React_Social_Network/static/media/Blurred-Background-02.bffb2178118637e1290a.jpg",
     "static/media/preloader.gif": "/React_Social_Network/static/media/preloader.77c0fc7b22e756437574.gif",
+    "static/media/avatar.png": "/React_Social_Network/static/media/avatar.dbbb6d0726a9d4c1b5e5.png",
     "index.html": "/React_Social_Network/index.html",
-    "main.44e71775.css.map": "/React_Social_Network/static/css/main.44e71775.css.map",
-    "main.69894036.js.map": "/React_Social_Network/static/js/main.69894036.js.map"
+    "main.d829c9fe.css.map": "/React_Social_Network/static/css/main.d829c9fe.css.map",
+    "main.0255f10b.js.map": "/React_Social_Network/static/js/main.0255f10b.js.map"
   },
   "entrypoints": [
-    "static/css/main.44e71775.css",
-    "static/js/main.69894036.js"
+    "static/css/main.d829c9fe.css",
+    "static/js/main.0255f10b.js"
   ]
 }
