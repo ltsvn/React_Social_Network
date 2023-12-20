@@ -6,7 +6,10 @@ import {connect} from "react-redux";
 import {login} from "../Redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../Redux/redux-store";
-import s from '../Components/common/FormsControls/FormControls.module.css'
+import s from '../Components/common/FormsControls/FormControls.module.css';
+import style from './Login.module.css';
+import  AvatarLoginPage from '../img/icons8-male-user-100.png'
+
 
 
 const Login = (props: any) => {
@@ -14,10 +17,18 @@ const Login = (props: any) => {
         props.login(formData.email, formData.password, formData.rememberMe);
     }
     return (
-        <div>
+        <div className={style.loginPageWrapper}>
             {props.isAuth && <Redirect to={'/profile'}/>}
-            <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <div className={style.formWrapper}>
+                <div>
+                    <img src={AvatarLoginPage} alt='avatar'/>
+                </div>
+                <div>
+                    <h2>Email: free@samuraijs.com</h2>
+                    <h2>Password: free</h2>
+                </div>
+                <LoginReduxForm onSubmit={onSubmit}/>
+            </div>
         </div>
     );
 };
@@ -30,14 +41,20 @@ type FormDataType = {
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
     return (
         <form onSubmit={handleSubmit}>
-            {createField('Email', 'email', [required], Input, null)}
-            {createField('Password', 'password', [required], Input, null, {type: 'password'})}
-            {createField(null, 'rememberMe', null, Input, 'remember me', {type: 'checkbox'})}
+            <div className={style.formInputs}>
+                {createField('Email', 'email', [required], Input, null)}
+            </div>
+            <div className={style.formInputs}>
+                {createField('Password', 'password', [required], Input, null, {type: 'password'})}
+            </div>
+            <div className={style.formCheckbox }>
+                {createField(null, 'rememberMe', null, Input, 'remember me', {type: 'checkbox'})}
+            </div>
             {error && <div className={s.formSummaryError}>
                 {error}
             </div>}
-            <div>
-                <button>Login</button>
+            <div className={style.formButtonWrapper}>
+                <button className={style.formButton}>Login</button>
             </div>
         </form>
     );

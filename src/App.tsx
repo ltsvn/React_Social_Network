@@ -1,11 +1,9 @@
 import React from 'react';
 import './App.css';
-import Navbar from "./Components/Navbar/Navbar";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Route, Switch, withRouter} from "react-router-dom";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
-import HeaderContainer from "./Components/Header/HeaderContainer";
 import {setAuthUserData} from "./Redux/auth-reducer";
 import Login from "./Login/Login";
 import {connect} from "react-redux";
@@ -15,6 +13,9 @@ import {AppStateType} from "./Redux/redux-store";
 import Preloader from "./Components/common/Preloader/Preloader";
 import Footer from "./Components/Footer/Footer";
 import FriendsScrollContainer from "./Components/FriendsScroll/FriendsScrollContainer";
+import NavbarContainer from "./Components/Navbar/NavbarContainer";
+import Header from "./Components/Header/Header";
+
 
 
 type AppProps = {
@@ -34,24 +35,27 @@ class App extends React.Component<AppProps> {
         }
         return (
             <BrowserRouter>
-                <div className='app-wrapper'>
-                    <HeaderContainer setAuthUserData={setAuthUserData}/>
-                    <div className='app-container'>
-                        <Navbar />
-                        <div className='app-content'>
-                            <Route path='/dialogs' render={() => <DialogsContainer />}/>
-                            <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
-                            <Route path='/users' render={() => <UsersContainer />}/>
-                            <Route path='/login' render={() => <Login />}/>
+                <Switch>
+                    <Route exact path='/login' component={Login}/>
+                    <div className='app-wrapper'>
+                        <Header />
+                        <div className='app-container'>
+                            <NavbarContainer setAuthUserData={setAuthUserData} />
+                            <div className='app-content'>
+                                    <Route path='/dialogs' render={() => <DialogsContainer />}/>
+                                    <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
+                                    <Route path='/users' render={() => <UsersContainer />}/>
+                            </div>
+                            <FriendsScrollContainer  />
                         </div>
-                        <FriendsScrollContainer  />
+                        <Footer/>
                     </div>
-                    <Footer/>
-                </div>
+                </Switch>
             </BrowserRouter>
         );
     }
 }
+
 
 type mapStateToPropsType = {
     initialized: boolean

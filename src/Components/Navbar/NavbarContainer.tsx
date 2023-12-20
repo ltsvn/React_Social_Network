@@ -1,15 +1,13 @@
+import Navbar from "./Navbar";
 import React from "react";
-import Header from "./Header";
-import {logout} from "../../Redux/auth-reducer";
 import {connect} from "react-redux";
+import {logout} from "../../Redux/auth-reducer";
 import {AppStateType} from "../../Redux/redux-store";
 
-
-
-class HeaderContainer extends React.Component<AuthPropsType> {
+class NavbarContainer extends React.Component<AuthPropsType> {
 
     render() {
-    return <Header {...this.props} />
+        return <Navbar {...this.props} />
 }}
 
 export type AuthPropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -23,12 +21,10 @@ type mapDispatchToPropsType = {
     setAuthUserData: (id: null, email: null, login: null, isAuth:boolean) => void
     logout: ()=> void
 }
-
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login
 
 });
 
-export default connect(mapStateToProps, {logout})(HeaderContainer);
-
+export default connect(mapStateToProps,{logout})(NavbarContainer);
